@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<p:panel header="Informações de Habilidades">
+
+	<p:messages closable="true" />
+
+	<div align="center">
+		<h:panelGrid columns="5" cellspacing="20">
+		
+			<h:outputLabel value="Descrição:" for="description-field"/>
+			<p:inputText id="description-field" 
+						 style="width:250px"
+						 value="#{cadastrarAlunoController.descricaoHabilidade}"/>
+
+			<h:outputLabel value="Nível:" />
+			<p:selectOneMenu style="width:150px"
+							 value="#{cadastrarAlunoController.nivelHabilidade}">
+				<f:selectItem itemLabel="Básico" itemValue="Básico" />
+				<f:selectItem itemLabel="Médio" itemValue="Médio" />
+				<f:selectItem itemLabel="Avançado" itemValue="Avançado" />
+			</p:selectOneMenu>
+
+			<p:commandButton id="btnaddHability" 
+							 icon="ui-icon-plus" style="width:50px;"
+							 actionListener="#{cadastrarAlunoController.addHabilidade}"
+							 update="table-habilities"/>
+							 
+			<p:tooltip id="toolTip-add-hability" 
+					   for="btnaddHability" 
+					   value="Adicionar" 
+					   trackMouse="false" />
+
+		</h:panelGrid>
+		
+		
+		<p:dataTable id="table-habilities" var="habilidade"
+			value="#{cadastrarAlunoController.habilidades}"
+			resizableColumns="true"
+			emptyMessage="Nenhuma habilidade definida."
+			style="width:700px">
+
+
+			<p:column headerText="Habilidade" style="text-align: center">
+				<h:outputText value="#{habilidade.descricao}" />
+			</p:column>
+			
+			<p:column headerText="Nível" style="text-align: center">
+				<h:outputText value="#{habilidade.nivel}" />
+			</p:column>
+
+			<p:column style="width:32px;text-align: center">
+				<p:commandButton icon="ui-icon-trash" 
+								 title="Excluir"
+								 update="table-habilities"
+								 action="#{cadastrarAlunoController.excluiHabilidade}">
+					<f:setPropertyActionListener value="#{habilidade}" 
+					target="#{cadastrarAlunoController.habilidadeSelecionada}" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+	</div>
+
+</p:panel>
+
+</html>

@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<!-- BUSCA POR PROJETOS -->
+	<h:form id="search-projects">
+		<h:panelGrid columns="5" cellspacing="5">
+			<p:inputText placeholder="Buscar Projetos..." 
+						 style="width:420px"
+						 value="#{homeController.palavraChave}"
+						 title="Digite um título ou palavra-chave que deseja buscar"/>
+
+			<p:selectOneMenu value="#{homeController.onde}">
+				<f:selectItem itemLabel="Toda universidade"
+					itemValue="Toda Universidade" />
+				<f:selectItem itemLabel="Somente no meu curso"
+					itemValue="#{homeController.userAluno.curso}" />
+			</p:selectOneMenu>
+
+			<p:selectOneMenu value="#{homeController.habilidade}" style="width:150px">
+				<f:selectItem itemLabel="Habilidade" itemValue="Habilidade" noSelectionOption="true" />
+				<f:selectItems value="#{homeController.habilidades}"/>
+			</p:selectOneMenu>
+
+			<p:commandButton value="Buscar" 
+							 icon="ui-icon-search" 
+							 actionListener="#{homeController.pesquisarProjetos}"
+							 update="pn-lista-de-projetos"
+							 title="Buscar projetos"/>
+							 
+			<p:commandButton icon="ui-icon-refresh" 
+							 title="Recarregar lista de projetos"
+							 actionListener="#{homeController.recarregarProjetos}"
+							 update="pn-lista-de-projetos"/>
+
+		</h:panelGrid>
+	</h:form>
+</html>

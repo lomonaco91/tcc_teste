@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Editar Perfil do Professor</title>
+	<style>
+		body {
+			background-color: #C1E1A6;
+		}
+	</style>
+</h:head>
+<h:body>
+
+	<h:form id="form-edit-profile">
+
+		<!-- BARRA DE MENU -->
+		<ui:include src="barraDeMenu.xhtml" />
+		
+		<!-- MENSAGEM -->
+		<p:growl id="messages" showDetail="true" />
+		
+		<p:panel>
+			<p:commandButton value="Salvar Alterações" 
+					 icon="ui-icon-disk"
+					 update="messages"
+					 actionListener="#{cadastrarProfessorController.atualizarProfessor}"/>					
+		</p:panel>
+		<p:spacer height="8"/>
+		
+		<p:tabView>
+
+			<!-- IDENTIFICAÇÃO -->
+			<p:tab id="identification" title="Identificação">
+				<ui:include src="detalhesPessoais.xhtml" />
+			</p:tab>
+
+
+			<!-- LOCALIZAÇÃO E CONTATO -->
+			<p:tab id="address" title="Localização e Contato">
+				<ui:include src="localizacaoContato.xhtml"/>
+			</p:tab>
+
+		</p:tabView>
+	
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>Relatórios</title>
+	<style>
+		body {
+			background-color: #C1E1A6;
+		}
+	</style>
+</h:head>
+
+<h:body>
+
+	<h:form id="relatorios">
+	
+		<!-- MENSAGEM -->
+		<p:growl id="growl" showDetail="true" />
+
+		<!-- BARRA DE MENU -->
+		<ui:include src="barraDeMenu.xhtml" />
+
+		<p:panel>
+			<div align="center">
+				<h:panelGrid columns="2" cellspacing="10">
+					<h:panelGrid columns="1">
+					
+						<p:selectOneMenu id="course-field" style="width:370px">
+							<f:selectItems value="#{listaDeCursos.cursos}" />
+						</p:selectOneMenu>
+
+						<p:panel style="width:400px">
+							<p:chart type="bar" model="#{relatoriosController.barModel}" style="height:250px" />
+						</p:panel>
+					</h:panelGrid>
+					
+					<p:panel style="width:450px">
+						<p:chart type="bar" model="#{relatoriosController.barModel}" style="height:285px" />
+					</p:panel>
+				</h:panelGrid>
+			</div>
+		</p:panel>
+		
+		<p:spacer width="8px"/>
+		
+		<p:panel style="height:200px">
+		
+		</p:panel>
+	</h:form>
+
+</h:body>
+</html>

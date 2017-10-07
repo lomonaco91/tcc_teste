@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>Inicio - #{homeController.userAluno.nome}</title>
+	<h:outputStylesheet library="css" name="default.css" />
+</h:head>
+
+<h:body>
+
+	<p:growl id="messages" showDetail="true" />
+
+	<!-- BARRA DE MENU -->
+	<ui:include src="barraDeMenu.xhtml" />
+
+	<p:layout>
+
+		<!-- PAINEL DE PERFIL -->
+		<ui:include src="home/painelPerfil.xhtml" />
+
+		<!-- PAINEL DE PROJETOS -->
+		<p:layoutUnit position="center">
+
+			<!-- PAINEL BASE -->
+			<p:panel style="height:510px; margin:10px">
+
+				<!-- PAINEL BUSCA POR PROJETOS -->
+				<ui:include src="home/painelBuscaPorProjetos.xhtml" />
+
+				<p />
+
+				<!-- PAINEL COM OS PROJETOS LISTADOS -->
+				<ui:include src="home/painelProjetosListados.xhtml" />
+
+			</p:panel>
+
+		</p:layoutUnit>
+
+	</p:layout>
+
+
+
+
+	<!-- DETALHES DO PROJETO -->
+	<p:dialog modal="true" showEffect="fade" hideEffect="fade"
+			  header="Detalhes do Projeto" widgetVar="project-details" 
+			  resizable="false" closeOnEscape="true">
+	
+		<ui:include src="home/painelDetalhesProjeto.xhtml"/>
+	 
+	</p:dialog>
+
+</h:body>
+</html>

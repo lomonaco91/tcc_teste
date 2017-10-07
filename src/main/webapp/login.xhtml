@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Login</title>
+	<h:outputStylesheet library="css" name="default.css" />	
+</h:head>
+
+
+<h:body>
+
+	<h:form id="form-login">
+		
+		<!-- MENSAGEM -->
+		<p:growl id="growl" showDetail="true" />
+	
+		<div align="center" id="login-panel">
+
+			<p:focus for="username" />
+
+			<p:panel header="Login"
+					 footer="UNIVÁS - Sistemas de Informação - 2017" 
+					 style="width:500px;">
+
+				<h:panelGrid columns="1" cellpadding="10">
+
+					<h:panelGrid columns="2" cellpadding="5">
+
+						<p:outputLabel for="username" value="Login:" />
+						<p:inputText id="username"
+							requiredMessage="Informe um nome de usuário"
+							value="#{loginController.usuario.contato.email}" />
+
+						<p:outputLabel for="password" value="Senha:" />
+						<p:password id="password" requiredMessage="Informe a senha"
+							value="#{loginController.usuario.senha}" />
+					</h:panelGrid>
+
+				</h:panelGrid>
+
+				<p />
+
+				<p:commandButton value="Acessar" id="btn-access"
+								 style="width:300px;" update="growl"
+								 actionListener="#{loginController.validarAcessar}" />
+
+				<p />
+
+				<p:commandButton value="Novo aqui? Registre-se" id="btn-newUser"
+								 style="width:300px;" 
+								 onclick="PF('newUserDialog').show()" />
+
+				<p />
+			</p:panel>
+		</div>
+	</h:form>
+
+
+	<!-- FORMULÁRIO DE CADASTRO DO NOVO USUÁRIO -->
+	<p:dialog modal="true" showEffect="fade" hideEffect="fade"
+		header="Novo Usuário" widgetVar="newUserDialog" 
+		resizable="false" closeOnEscape="true">
+
+		<ui:include src="common/cadastroInicial.xhtml" />
+	</p:dialog>
+
+</h:body>
+</html>

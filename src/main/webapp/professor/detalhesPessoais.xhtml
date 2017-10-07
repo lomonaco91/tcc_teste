@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<p:panel header="Detalhes Pessoais">
+
+	<h:panelGrid columns="6" cellspacing="20">
+
+		<p:outputLabel value="Nome Completo:" for="name-field" />
+		<p:inputText id="name-field" value="#{cadastrarProfessorController.professor.nome}"/>
+
+		<p:outputLabel value="RG:" for="rg-field" />
+		<p:inputMask id="rg-field" value="#{cadastrarProfessorController.professor.documentoRG}" mask="99.999.999"/>
+
+		<p:outputLabel value="CPF:" for="cpf-field" />
+		<p:inputMask id="cpf-field" value="#{cadastrarProfessorController.professor.documentoCPF}" mask="999.999.999-99"/>
+
+		<p:outputLabel value="Sexo:" for="gender-field"/>
+		<p:selectOneMenu style="width:170px" id="gender-field" value="#{cadastrarProfessorController.professor.sexo}">
+			<f:selectItem itemLabel="Selecione" itemValue="Selecione" noSelectionOption="true" />
+			<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+			<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+		</p:selectOneMenu>
+
+		<p:outputLabel value="Estado Cívil:" for="marital_status-field" />
+		<p:selectOneMenu id="marital_status-field" style="width:170px"
+			value="#{cadastrarProfessorController.professor.estadoCivil}">
+			<f:selectItem itemLabel="Selecione" itemValue="Selecione" noSelectionOption="true" />
+			<f:selectItems value="#{cadastrarProfessorController.estadoCivil}" />
+		</p:selectOneMenu>		
+
+		<p:outputLabel value="Matrícula:" for="id-field" />
+		<p:inputMask id="id-field" mask="99999999" 
+					 value="#{cadastrarProfessorController.professor.matricula}">
+			<p:tooltip id="toolTip-ra" for="id-field" position="bottom"
+				value="Código de registro do professor junto à universidade." />
+		</p:inputMask>
+
+		<p:outputLabel value="Titulação" for="degree-field" />
+		<p:selectOneMenu style="width:170px" id="degree-field" 
+				value="#{cadastrarProfessorController.professor.titulacao}">
+			<f:selectItem itemLabel="Selecione" itemValue="Selecione" noSelectionOption="true" />
+			<f:selectItem itemLabel="Especialista" itemValue="Especialista" />
+			<f:selectItem itemLabel="Mestre" itemValue="Mestre" />
+			<f:selectItem itemLabel="Doutor" itemValue="Doutor" />
+		</p:selectOneMenu>		
+
+		<p:outputLabel value="Data de Nascimento:" for="birthday-field" />
+		<p:inputMask id="birthday-field" 
+					 value="#{cadastrarProfessorController.professor.dataNascimento}" 
+					 mask="99/99/9999"/>
+
+		<p:outputLabel value="Data de Admissão:" for="registration_date-field" />
+		<p:inputMask id="registration_date-field" 
+					 value="#{cadastrarProfessorController.professor.dataAdmissao}" 
+					 mask="99/99/9999"/>
+		
+		<p:outputLabel value="Curso:" for="course-field" />
+		<p:selectOneMenu id="course-field" value="#{cadastrarProfessorController.professor.curso.nome}" >
+			<f:selectItems value="#{listaDeCursos.cursos}" />
+		</p:selectOneMenu>			 
+	</h:panelGrid>
+</p:panel>
+
+</html>

@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>Inicio - #{homeProfessorController.userProfessor.nome}</title>
+	<h:outputStylesheet library="css" name="default.css" />
+</h:head>
+
+<h:body>
+
+	<!-- BARRA DE MENU -->
+	<ui:include src="barraDeMenu.xhtml" />
+
+	<!-- MENSAGEM -->
+	<p:growl id="mensagem" showDetail="true" closable="true" />
+
+	<p:layout id="layout">
+
+		<!-- PAINEL DE PERFIL -->
+		<ui:include src="home/painelPerfil.xhtml" />
+
+		<p:layoutUnit position="center" id="layoutUnit-painelNovoProjeto">
+			<p:tabView style="margin:10px" id="Tabview-novoProjeto">
+
+				<!-- CADASTRO DE NOVOS PROJETOS -->
+				<p:tab title="Projetos para alunos" id="projetosParaAlunos">
+
+					<h:form id="form-novoProjeto">
+						<p:panel>
+							<div align="right">
+
+								<p:commandButton value="Salvar Projeto" icon="ui-icon-disk"
+									id="btnSalvarNovoProjeto"
+									actionListener="#{cadastrarProjetoController.salvarProjeto}"
+									ajax="false" update="mensagem" />
+
+							</div>
+						</p:panel>
+
+						<p:spacer height="8" />
+
+						<!-- PAINEL DE ABAS HORIZONTAIS -->
+						<p:accordionPanel multiple="false" id="horizontal-panel">
+
+							<p:tab title="Identificação">
+								<ui:include src="projetos/identificacao.xhtml" />
+							</p:tab>
+
+							<p:tab title="Financiamento">
+								<ui:include src="projetos/financiamento.xhtml" />
+							</p:tab>
+
+							<p:tab title="Alunos">
+								<ui:include src="projetos/alunos.xhtml" />
+							</p:tab>
+
+							<p:tab title="Habilidades">
+								<ui:include src="projetos/habilidades.xhtml" />
+							</p:tab>
+
+							<p:tab title="Resumo">
+								<ui:include src="projetos/resumo.xhtml" />
+							</p:tab>
+
+						</p:accordionPanel>
+					</h:form>
+				</p:tab>
+
+				<!-- BUSCA POR ALUNOS -->
+				<p:tab id="search-students" title="Alunos para projetos">
+					<ui:include src="home/buscaPorAlunos.xhtml"/>
+				</p:tab>
+				
+			</p:tabView>
+		</p:layoutUnit>
+	</p:layout>
+	
+	<!-- DETALHES DO ALUNO -->
+	<p:dialog modal="true" showEffect="fade" hideEffect="fade"
+		header="Detalhes do Aluno" widgetVar="student-details"
+		resizable="false" closeOnEscape="true">
+
+		<p:panel>
+			<h:outputLabel value="Detalhes completos sobre o aluno" />
+		</p:panel>
+
+	</p:dialog>
+</h:body>
+</html>
